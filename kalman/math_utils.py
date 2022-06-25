@@ -26,7 +26,7 @@ def _extract_range(range: ValueOrRange) -> Tuple[float, float]:
     If range has more than 2 elements, only first two are used, and the rest is ignored"""
 
     if isinstance(range, float) or isinstance(range, int) or isinstance(range, number):
-        return (-_to_float(range), _to_float(range))
+        return (-float(range), float(range))
     elif len(cast(Mapping, range)) == 1:
         range_collection = cast(Mapping, range)
         return (-_to_float(range_collection[0]), _to_float(range_collection[0]))

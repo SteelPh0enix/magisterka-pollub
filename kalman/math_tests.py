@@ -1,25 +1,6 @@
-from math_utils import random_uniform_float, random_normal_float
-from typing import List
-import matplotlib.pyplot as plt
+from plots_tests import HistogramDataset, show_histograms_on_grid
+from math_utils import random_uniform_float, random_normal_float, add_noise
 import numpy as np
-
-
-def show_histograms(
-    data: List[List[float]],
-    labels: List[List[str]],
-    rows: int,
-    columns: int,
-    nbins: int,
-):
-    fig, ax = plt.subplots(rows, columns)
-
-    for x in range(columns):
-        for y in range(rows):
-            i = x * rows + y
-            ax[x][y].hist(data[i], bins=nbins, label=labels[i])
-            ax[x][y].set_title(labels[i])
-
-    plt.show()
 
 
 def test_random_uniform_float():
@@ -28,8 +9,16 @@ def test_random_uniform_float():
     numbers_c = [random_uniform_float([10, 20]) for _ in range(0, 10000)]
     numbers_d = [random_uniform_float((-20, -10)) for _ in range(0, 10000)]
 
-    show_histograms(
-        [numbers_a, numbers_b, numbers_c, numbers_d], ["A", "B", "C", "D"], 2, 2, 20
+    show_histograms_on_grid(
+        [
+            HistogramDataset(values=numbers_a, label="A", bins=50),
+            HistogramDataset(values=numbers_b, label="B", bins=50),
+            HistogramDataset(values=numbers_c, label="C", bins=50),
+            HistogramDataset(values=numbers_d, label="D", bins=50),
+        ],
+        2,
+        2,
+        "Random uniform floats",
     )
 
 
@@ -39,8 +28,16 @@ def test_random_normal_float():
     numbers_c = [random_normal_float(10, 1) for _ in range(0, 10000)]
     numbers_d = [random_normal_float(5, 5) for _ in range(0, 10000)]
 
-    show_histograms(
-        [numbers_a, numbers_b, numbers_c, numbers_d], ["A", "B", "C", "D"], 2, 2, 20
+    show_histograms_on_grid(
+        [
+            HistogramDataset(values=numbers_a, label="A", bins=50),
+            HistogramDataset(values=numbers_b, label="B", bins=50),
+            HistogramDataset(values=numbers_c, label="C", bins=50),
+            HistogramDataset(values=numbers_d, label="D", bins=50),
+        ],
+        2,
+        2,
+        "Random normal floats",
     )
 
 
@@ -50,7 +47,15 @@ def test_random_float():
 
 
 def test_add_noise():
-    pass
+    numbers_args = np.linspace(0, 2 * np.pi, 10000)
+    numbers = [np.sin(x) for x in numbers_args]
+    noised_numbers = [add_noise(number, 0.0, 1.0) for number in numbers]
+
+    # plot_lines_on_single_plot(
+    #     [(numbers_args, numbers), (numbers_args, noised_numbers)],
+    #     ["Original", "Noised"],
+    #     ["b", "r"],
+    # )
 
 
 def test_numbers_generator():

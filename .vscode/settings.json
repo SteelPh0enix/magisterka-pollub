@@ -3,8 +3,11 @@
     "ddof",
     "interp",
     "linewidth",
+    "linspace",
     "matplotlib",
     "nbins",
     "pyplot"
-  ]
+  ],
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true
 }
