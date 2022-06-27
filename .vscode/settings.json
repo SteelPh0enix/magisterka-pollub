@@ -1,12 +1,16 @@
 {
   "cSpell.words": [
+    "blueviolet",
     "ddof",
     "interp",
     "linewidth",
     "linspace",
     "matplotlib",
     "nbins",
-    "pyplot"
+    "pyplot",
+    "randn",
+    "suptitle",
+    "yellowgreen"
   ],
   "python.linting.mypyEnabled": true,
   "python.linting.enabled": true

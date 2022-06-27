@@ -1,35 +1,31 @@
-from dataclasses import dataclass
-from typing import List, cast
-from matplotlib.axes import Axes
-import matplotlib.pyplot as plt
+import numpy as np
+from plots_utils import show_histograms_on_grid, HistogramDataset
 
 
-@dataclass
-class HistogramDataset:
-    values: List[float]
-    label: str
-    bins: int
+def test_histograms():
+    np.random.seed(12345678)
+
+    x_a = 100 + 15 * np.random.randn(10000)
+    x_b = 100 + 150 * np.random.randn(10000)
+    x_c = 10 + 15 * np.random.randn(10000)
+    x_d = 0 + 1 * np.random.randn(10000)
+
+    show_histograms_on_grid(
+        [
+            HistogramDataset(values=x_a, label="A", bins=50),
+            HistogramDataset(values=x_b, label="B", bins=50, color='r'),
+            HistogramDataset(values=x_c, label="C", bins=50, color='pink'),
+            HistogramDataset(values=x_d, label="D", bins=50, color='yellowgreen'),
+        ],
+        2,
+        2,
+        "Hello!",
+    )
 
 
-def show_histograms_on_grid(
-    datasets: List[HistogramDataset],
-    columns: int,
-    rows: int,
-    title: str = "",
-    squeeze: bool = False,
-):
-    _, ax = plt.subplots(rows, columns, squeeze=squeeze)
+def test_plots():
+    test_histograms()
 
-    for y in range(rows):
-        for x in range(columns):
-            index = (y * columns) + x
 
-            axis = cast(Axes, ax[y][x])
-            data = datasets[index]
-
-            print(f"x = {x}, y = {y}, index = {index}")
-
-            axis.hist(data.values, bins=data.bins, label=data.label)
-            axis.set_title(data.label)
-
-    plt.show()
+if __name__ == "__main__":
+    test_plots()

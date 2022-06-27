@@ -1,4 +1,4 @@
-from plots_tests import HistogramDataset, show_histograms_on_grid
+from plots_utils import HistogramDataset, show_histograms_on_grid
 from math_utils import random_uniform_float, random_normal_float, add_noise
 import numpy as np
 
