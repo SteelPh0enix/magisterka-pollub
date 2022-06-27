@@ -27,7 +27,6 @@ def show_histograms_on_grid(
     for y in range(rows):
         for x in range(columns):
             index = (y * columns) + x
-
             axis = cast(Axes, ax[y][x])
             data = datasets[index]
 
@@ -48,35 +47,49 @@ def show_histogram(dataset: HistogramDataset):
 class PlotDataset:
     values_y: List[float]
     values_x: List[float] | None = None
-    labels_y: List[str] | None = None
-    labels_x: List[str] | None = None
+    label: str | None = None
     ylabel: str | None = None
     xlabel: str | None = None
-    label: str | None = None
     color: str = "blueviolet"
     linestyle: str = "-"
     linewidth: float = 3.0
     marker: str | None = None
 
 
-def show_line_plots_grid(datasets: List[PlotDataset], title: str | None = None):
-    pass
+def show_line_plots_grid(
+    datasets: List[PlotDataset],
+    columns: int,
+    rows: int,
+    title: str | None = None,
+    squeeze: bool = False,
+):
+    _, ax = plt.subplots(rows, columns, squeeze=squeeze)
+
+    for y in range(rows):
+        for x in range(columns):
+            index = (y * columns) + x
+            axis = cast(Axes, ax[y][x])
+            data = datasets[index]
+
+            # if there's no default x values, generate them
+            # i do not want to depend on matplotlib for that
+            x = value_or_default(data.values_x, list(range(len(data.values_y))))
+
+            axis.plot(
+                x,
+                data.values_y,
+                color=data.color,
+                linestyle=data.linestyle,
+                linewidth=data.linewidth,
+                marker=data.marker,
+            )
+            axis.set_title(data.label)
+            axis.set_xlabel(data.xlabel)
+            axis.set_ylabel(data.ylabel)
+
+    plt.suptitle(title)
+    plt.show()
 
 
-# def show_line_plot(dataset: PlotDataset):
-#     # i know pyplot does that when only 'y' values are passed
-#     # but i don't see why wouldn't i do it anyway
-#     # kinda not sure if it'll work when x=None, maybe i'll check that later
-#     # inb4 lazy programming, yes, it is, it's a bit too hot to think
-#     x = value_or_default(dataset.values_x, list(range(len(dataset.values_y))))
-
-#     fig,ax = plt.subplots(1, 1)
-
-#     lines = plt.plot(
-#         xdata=x,
-#         ydata=dataset.values_y,
-#         color=dataset.color,
-#         linestyle=dataset.linestyle,
-#         linewidth=dataset.linewidth,
-#         marker=dataset.marker,
-#     )
+def show_line_plot(dataset: PlotDataset):
+    show_line_plots_grid([dataset], 1, 1)

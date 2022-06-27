@@ -13,9 +13,12 @@
     "suptitle",
     "xdata",
     "xlabel",
+    "xticklabels",
+    "xval",
     "ydata",
     "yellowgreen",
-    "ylabel"
+    "ylabel",
+    "yticklabels"
   ],
   "python.linting.mypyEnabled": true,
   "python.linting.enabled": true
