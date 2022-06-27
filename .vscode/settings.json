@@ -10,7 +10,9 @@
     "pyplot",
     "randn",
     "suptitle",
-    "yellowgreen"
+    "xlabel",
+    "yellowgreen",
+    "ylabel"
   ],
   "python.linting.mypyEnabled": true,
   "python.linting.enabled": true
