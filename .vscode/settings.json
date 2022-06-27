@@ -3,6 +3,7 @@
     "blueviolet",
     "ddof",
     "interp",
+    "linestyle",
     "linewidth",
     "linspace",
     "matplotlib",
@@ -10,7 +11,9 @@
     "pyplot",
     "randn",
     "suptitle",
+    "xdata",
     "xlabel",
+    "ydata",
     "yellowgreen",
     "ylabel"
   ],

@@ -34,7 +34,14 @@ def test_histograms_grid():
         [
             HistogramDataset(values=x_a, label="A", bins=50),
             HistogramDataset(values=x_b, label="B", bins=50, color="r"),
-            HistogramDataset(values=x_c, label="C", bins=50, color="pink"),
+            HistogramDataset(
+                values=x_c,
+                label="C",
+                bins=50,
+                color="pink",
+                xlabel="X label",
+                ylabel="Y label",
+            ),
             HistogramDataset(values=x_d, label="D", bins=50, color="yellowgreen"),
         ],
         2,
