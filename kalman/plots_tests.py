@@ -5,6 +5,7 @@ from plots_utils import (
     HistogramDataset,
     show_line_plots_grid,
     show_line_plot,
+    show_multiline_plot,
     PlotDataset,
 )
 
@@ -86,6 +87,7 @@ def test_line_plots_grid():
                 label="f(x) = cos(x)",
                 xlabel="x",
                 ylabel="cos(x)",
+                color="red",
             ),
             PlotDataset(
                 values_y=y4,
@@ -93,6 +95,7 @@ def test_line_plots_grid():
                 label="f(x) = tg(x)",
                 xlabel="x",
                 ylabel="tg(x)",
+                color="blue",
             ),
         ],
         2,
@@ -108,14 +111,50 @@ def test_line_plot():
 
 
 def test_multiline_plot():
-    pass
+    y1 = np.linspace(0, 4 * np.pi, 1000)
+    y2 = [np.sin(i) for i in y1]
+    y3 = [np.cos(i) for i in y1]
+    y4 = [np.tan(i) for i in y1]
+
+    show_multiline_plot(
+        [
+            PlotDataset(
+                values_y=y1,
+                values_x=y1,
+                label="f(x) = x * 4pi / 1000",
+                xlabel="x",
+                ylabel="x * 4pi / 1000",
+            ),
+            PlotDataset(
+                values_y=y2,
+                values_x=y1,
+                label="f(x) = sin(x)",
+                xlabel="x",
+                ylabel="sin(x)",
+                linestyle="--",
+                linewidth=2.0,
+                color="green",
+            ),
+            PlotDataset(
+                values_y=y3,
+                values_x=y1,
+                label="f(x) = cos(x)",
+                xlabel="x",
+                ylabel="cos(x)",
+                color="red",
+            ),
+        ],
+        "Some periodic functions on top of each other",
+        "f(x)",
+        "x",
+    )
 
 
 def test_plots():
     # test_histogram()
     # test_histograms_grid()
-    test_line_plots_grid()
-    test_line_plot()
+    # test_line_plots_grid()
+    # test_line_plot()
     test_multiline_plot()
 
 

@@ -93,3 +93,37 @@ def show_line_plots_grid(
 
 def show_line_plot(dataset: PlotDataset):
     show_line_plots_grid([dataset], 1, 1)
+
+
+def show_multiline_plot(
+    datasets: List[PlotDataset],
+    title: str | None = None,
+    ylabel: str | None = None,
+    xlabel: str | None = None,
+    show_legend: bool = True,
+):
+    """Note: `xlabel` and `ylabel` dataset settings will be ignored. Use `ylabel` and `xlabel` function arguments instead."""
+    _, ax = plt.subplots(1, 1)
+    axis = cast(Axes, ax)
+
+    for data in datasets:
+        # if there's no default x values, generate them
+        # i do not want to depend on matplotlib for that
+        x = value_or_default(data.values_x, list(range(len(data.values_y))))
+
+        axis.plot(
+            x,
+            data.values_y,
+            color=data.color,
+            linestyle=data.linestyle,
+            linewidth=data.linewidth,
+            marker=data.marker,
+            label=data.label,
+        )
+
+    axis.set_xlabel(xlabel)
+    axis.set_ylabel(ylabel)
+    plt.suptitle(title)
+    if show_legend:
+        plt.legend()
+    plt.show()
