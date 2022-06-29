@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-matplotlib = "~=3.5"
 numpy = "~=1.22"
+seaborn = "~=0.11"
 
 [dev-packages]
 mypy = "*"
