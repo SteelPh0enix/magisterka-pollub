@@ -7,6 +7,9 @@ from plots_utils import (
     show_line_plot,
     show_multiline_plot,
     PlotDataset,
+    BoxPlotDataset,
+    show_box_plot,
+    show_box_plots_grid,
 )
 
 
@@ -150,12 +153,44 @@ def test_multiline_plot():
     )
 
 
+def test_box_plots():
+    np.random.seed(12345678)
+
+    x1 = 0 + 1 * np.random.randn(10000)
+    x2 = 100 + 100 * np.random.randn(10000)
+    x3 = 100 + 1 * np.random.randn(10000)
+    x4 = 1 + 100 * np.random.randn(10000)
+
+    show_box_plot(
+        BoxPlotDataset(
+            [x1, x2, x3, x4],
+            label="Some random numbers",
+            xlabel="datasets",
+            ylabel="values probability",
+            values_labels=["A", "B", "C", "D"],
+        )
+    )
+
+    show_box_plots_grid(
+        [
+            BoxPlotDataset(x1, label="X1"),
+            BoxPlotDataset(x2, label="X2", notch=False),
+            BoxPlotDataset(x3, label="X3", vertical=False),
+            BoxPlotDataset(x4, label="X4", notch=False, vertical=False),
+        ],
+        2,
+        2,
+        "random stuff",
+    )
+
+
 def test_plots():
     # test_histogram()
     # test_histograms_grid()
     # test_line_plots_grid()
     # test_line_plot()
-    test_multiline_plot()
+    # test_multiline_plot()
+    test_box_plots()
 
 
 if __name__ == "__main__":

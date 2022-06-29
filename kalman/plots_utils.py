@@ -127,3 +127,44 @@ def show_multiline_plot(
     if show_legend:
         plt.legend()
     plt.show()
+
+
+@dataclass
+class BoxPlotDataset:
+    values: List[float] | List[List[float]]
+    notch: bool = False
+    vertical: bool = True
+    label: str | None = None
+    ylabel: str | None = None
+    xlabel: str | None = None
+    values_labels: List[str] | None = None
+
+
+def show_box_plots_grid(
+    datasets: List[BoxPlotDataset],
+    rows: int,
+    columns: int,
+    title: str | None = None,
+    squeeze: bool = False,
+):
+    _, ax = plt.subplots(rows, columns, squeeze=squeeze)
+
+    for y in range(rows):
+        for x in range(columns):
+            index = (y * columns) + x
+            axis = cast(Axes, ax[y][x])
+            data = datasets[index]
+
+            axis.boxplot(data.values, notch=data.notch, vert=data.vertical)
+            axis.set_title(data.label)
+            axis.set_xlabel(data.xlabel)
+            axis.set_ylabel(data.ylabel)
+            if data.values_labels is not None:
+                axis.set_xticklabels(data.values_labels)
+
+    plt.suptitle(title)
+    plt.show()
+
+
+def show_box_plot(dataset: BoxPlotDataset):
+    show_box_plots_grid([dataset], 1, 1)
