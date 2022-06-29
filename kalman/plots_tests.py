@@ -70,9 +70,9 @@ def test_line_plots_grid():
         [
             PlotDataset(
                 values_y=y1,
-                label="f(x) = x * 4pi / 1000",
+                label="f(x) = x * something",
                 xlabel="x",
-                ylabel="x * 4pi / 1000",
+                ylabel="x * something",
             ),
             PlotDataset(
                 values_y=y2,
@@ -124,9 +124,9 @@ def test_multiline_plot():
             PlotDataset(
                 values_y=y1,
                 values_x=y1,
-                label="f(x) = x * 4pi / 1000",
+                label="f(x) = x something",
                 xlabel="x",
-                ylabel="x * 4pi / 1000",
+                ylabel="x * something",
             ),
             PlotDataset(
                 values_y=y2,
@@ -147,7 +147,7 @@ def test_multiline_plot():
                 color="red",
             ),
         ],
-        "Some periodic functions on top of each other",
+        "Some functions on top of each other",
         "f(x)",
         "x",
     )
@@ -185,11 +185,11 @@ def test_box_plots():
 
 
 def test_plots():
-    # test_histogram()
-    # test_histograms_grid()
-    # test_line_plots_grid()
-    # test_line_plot()
-    # test_multiline_plot()
+    test_histogram()
+    test_histograms_grid()
+    test_line_plots_grid()
+    test_line_plot()
+    test_multiline_plot()
     test_box_plots()
 
 
