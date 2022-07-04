@@ -1,6 +1,5 @@
-from numpy.random import default_rng, Generator
-from numpy import number
-from typing import cast, Tuple, Mapping, Any
+from numpy import number, random
+from typing import cast, Tuple, Mapping, Any, Generator
 
 # for interpolation, use numpy.interp:
 # >>> from numpy import interp
@@ -9,7 +8,7 @@ from typing import cast, Tuple, Mapping, Any
 
 ValueOrRange = float | Mapping[int, float]
 
-_module_rng = default_rng()
+_module_rng = random.default_rng()
 
 
 def _to_float(value: Any) -> float:
@@ -38,7 +37,7 @@ def _extract_range(range: ValueOrRange) -> Tuple[float, float]:
 
 
 def random_uniform_float(
-    range: ValueOrRange, generator: Generator | None = None
+    range: ValueOrRange, generator: random.Generator | None = None
 ) -> float:
     """Returns a random float in specified range, generated with uniform distribution.
     Uses internal generator defined in this module by default.
@@ -54,7 +53,7 @@ def random_uniform_float(
 def random_normal_float(
     mean: float = 0.0,
     deviation: float = 1.0,
-    generator: Generator | None = None,
+    generator: random.Generator | None = None,
 ) -> float:
     """Returns a random float, generated with normal distribution.
     Uses internal generator defined in this module by default.
@@ -69,7 +68,7 @@ def add_noise(
     value: float,
     mean: float = 0.0,
     deviation: float = 1.0,
-    generator: Generator | None = None,
+    generator: random.Generator | None = None,
 ) -> float:
     """Returns the passed value with random gaussian noise.
     You can tweak the distribution settings with mu and sigma arguments.
@@ -83,14 +82,19 @@ def add_noise(
     return value + noise
 
 
-class NumbersGenerator:
-    """This generator creates random numbers with bias, variance, and bias variance to represent realistic, noisy measurements"""
+def noisy_numbers_generator(
+    range: ValueOrRange,
+    bias_mean: float,
+    bias_variance: float,
+    generator: random.Generator | None = None,
+) -> Generator[Tuple[float, float, float], None, None]:
+    """This generator creates random numbers with bias, variance, and bias variance to represent realistic, noisy measurements
 
-    def __init__(
-        self,
-        range: ValueOrRange,
-        bias: ValueOrRange,
-        variance: ValueOrRange,
-        bias_variance: ValueOrRange,
-    ) -> None:
-        pass
+    Returns a tuple with (noised number, original number, noise value)"""
+    if generator is None:
+        generator = _module_rng
+
+    while True:
+        original = random_uniform_float(range, generator)
+        noise = random_normal_float(bias_mean, bias_variance, generator)
+        yield original + noise, original, noise
