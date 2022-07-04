@@ -1,11 +1,10 @@
-from math_utils import (
-    noisy_numbers_generator,
-    random_uniform_float,
+from libs.math_utils import (
     random_normal_float,
+    random_uniform_float,
+    noisy_numbers_generator,
     add_noise,
 )
 import numpy as np
-
 
 def test_random_uniform_float():
     numbers_a = [random_uniform_float(10) for _ in range(0, 10)]
