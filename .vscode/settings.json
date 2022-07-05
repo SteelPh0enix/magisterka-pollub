@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
+    "ADNS",
     "blueviolet",
     "boxplot",
+    "datasheecie",
     "ddof",
     "displot",
     "distplot",
@@ -11,7 +13,9 @@
     "linewidth",
     "linspace",
     "matplotlib",
+    "międzyosiowa",
     "nbins",
+    "odometrii",
     "plotgrid",
     "pyplot",
     "randn",
@@ -19,6 +23,7 @@
     "robotycznej",
     "seaborn",
     "suptitle",
+    "wieloobrotowy",
     "xdata",
     "xlabel",
     "xticklabels",
@@ -26,7 +31,8 @@
     "ydata",
     "yellowgreen",
     "ylabel",
-    "yticklabels"
+    "yticklabels",
+    "zamodelowania"
   ],
   "python.linting.mypyEnabled": true,
   "python.linting.enabled": true
