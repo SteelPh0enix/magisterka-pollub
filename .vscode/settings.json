@@ -16,8 +16,10 @@
     "międzyosiowa",
     "nbins",
     "odometrii",
+    "parametryzacji",
     "plotgrid",
     "pyplot",
+    "Pythonowe",
     "randn",
     "robotyczną",
     "robotycznej",
@@ -32,7 +34,8 @@
     "yellowgreen",
     "ylabel",
     "yticklabels",
-    "zamodelowania"
+    "zamodelowania",
+    "zmapowane"
   ],
   "python.linting.mypyEnabled": true,
   "python.linting.enabled": true
