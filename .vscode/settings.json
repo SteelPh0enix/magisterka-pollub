@@ -8,6 +8,7 @@
     "ddof",
     "displot",
     "distplot",
+    "iloc",
     "interp",
     "kdeplot",
     "linestyle",
@@ -38,6 +39,7 @@
     "ylabel",
     "yticklabels",
     "zamodelowania",
+    "zasymulowania",
     "zmapowane"
   ],
   "python.linting.mypyEnabled": true,
