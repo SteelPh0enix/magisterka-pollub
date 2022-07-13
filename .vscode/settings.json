@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "ADNS",
+    "Bessela",
     "blueviolet",
     "boxplot",
     "dataframe",
@@ -10,6 +11,7 @@
     "distplot",
     "iloc",
     "interp",
+    "iterrows",
     "kdeplot",
     "linestyle",
     "linewidth",
