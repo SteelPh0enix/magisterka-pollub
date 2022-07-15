@@ -18,6 +18,7 @@
     "interp",
     "iterrows",
     "kdeplot",
+    "lineplot",
     "linestyle",
     "linewidth",
     "linspace",
